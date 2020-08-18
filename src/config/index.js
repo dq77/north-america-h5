@@ -4,24 +4,17 @@
  * @LastEditors: わからないよう
  */
 
+let url = ''
+if (process.env.NODE_ENV === 'development') {
 
-// export const baseUrl = "http://47.252.81.77"; // 测试接口地址
-export const baseUrl = "http://canada.api.taozugong.cn";
-// export const baseUrl = "https://service.taozugong.com"; // 正式接口地址
-// export const serviecUrl = "https://jd.taozugong.cn"; // 京东测试地址
-// export const serviecUrl = "https://canada.api.taozugong.cn"; // M站测试地址
-// export const serviecUrl = "https://alipay.taozugong.cn"; // 生活号测试地址
-export const serviecUrl = "https://jd.taozugong.com"; // 京东正式地址
-// export const serviecUrl = "https://m.taozugong.com"; // M站正式地址
-// export const serviecUrl = "https://alipay.taozugong.com"; // 生活号正式地址
+  // 本地调试环境 你愿意连谁就连谁 没人管你 (仅开发环境生效，测试或者生产环境的配置在/config/prod.js里选择)
+  url = "http://canada.api.taozugong.cn" // 加拿大测试环境
+  // url = "http://canada.api.taozugong.com" // 加拿大生产环境
+  // url = "http://usa.api.taozugong.cn" // 美国测试环境
+  // url = "http://usa.api.taozugong.com" // 美国生产环境
 
-export const alipayLifeAuthorizationUrl =
-  "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2017091208699638&scope=auth_user"; // 支付宝授权页面正式地址
-// "https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=2017082808426743&scope=auth_user"; // 支付宝授权页面测试地址
+} else if (process.env.NODE_ENV === 'production') {
+  url = `http://${process.env.CHANNEL}.api.taozugong.${process.env.BUILD === 'test' ? 'cn' : 'com'}`
+}
 
-export const jdAuthorizationUrl =
-  "http://opencredit.jd.com/oauth2/bind?merchantCode=73024369"; // 京东权益授权页面地址
-export const imgUploadUrl = baseUrl;
-
-//OSS CDN 图片地址
-export const CDNUrl = "https://assets.taozugong.com";
+export const baseUrl = url
