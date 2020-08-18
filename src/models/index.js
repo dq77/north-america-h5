@@ -6,8 +6,10 @@
 
 import activity from './activity/model';
 import user from './user/model';
+import common from './common/model';
 
 export default [
   activity,
   user,
+  common,
 ]

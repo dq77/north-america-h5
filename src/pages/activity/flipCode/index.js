@@ -5,7 +5,7 @@
  */
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import { View, Image } from '@tarojs/components'
 import { connect } from 'react-redux'
 import { AtButton } from 'taro-ui'
 import QRCode from 'qrcode';
@@ -14,8 +14,8 @@ import { hasUserState } from '../../../utils/login'
 
 import './index.scss'
 
-@connect(({ activity }) => ({
-  ...activity
+@connect(({ activity, common }) => ({
+  ...activity, ...common
 }))
 export default class Index extends Component {
   constructor(props) {
@@ -23,7 +23,6 @@ export default class Index extends Component {
   }
   state = {
     allCoupon: 0,
-    couponInfo: {},
     qrcodeUrl: '',
     couponNum: '',
     showCoupon: false
@@ -32,6 +31,10 @@ export default class Index extends Component {
   componentWillMount () { }
 
   componentDidMount () {
+    this.props.dispatch({
+      type: 'common/setChannel',
+      payload: 'CANADA'
+    })
   }
 
   componentWillUnmount () { }
@@ -95,7 +98,7 @@ export default class Index extends Component {
   componentDidHide () { }
 
   render () {
-    const { couponInfo, showCoupon, qrcodeUrl, couponNum, allCoupon } = this.state
+    const { showCoupon, qrcodeUrl, couponNum, allCoupon } = this.state
     return (
       <View className='flip-code-page'>
         {!showCoupon && (
