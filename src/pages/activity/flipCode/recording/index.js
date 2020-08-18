@@ -78,6 +78,7 @@ export default class Index extends Component {
   changeOrder = () => {
     this.setState({
       asc: !this.state.asc,
+      couponList: [],
       page: 1,
       loading: true
     }, () => {
