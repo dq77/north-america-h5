@@ -1,3 +1,8 @@
+/*
+ * @Author: 刁琪
+ * @Date: 2020-08-14 17:28:16
+ * @LastEditors: わからないよう
+ */
 const config = {
   projectName: 'north-america-h5',
   date: '2020-8-14',
@@ -44,6 +49,7 @@ const config = {
   },
   h5: {
     publicPath: '/',
+    esnextModules: ['taro-ui'],
     staticDirectory: 'static',
     postcss: {
       autoprefixer: {
