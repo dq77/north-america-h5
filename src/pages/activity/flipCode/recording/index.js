@@ -94,10 +94,10 @@ export default class Index extends Component {
           <View>数量：{totalRecords}</View>
           <View onClick={() => {this.changeOrder()}}>时间
             {order && (
-            <Image className='right-tip' src='https://north-america-h5-test.oss-us-east-1.aliyuncs.com/static/activity/flipCode/sort-up.png'></Image>
+            <Image className='right-tip' src='https://north-america-h5.oss-us-east-1.aliyuncs.com/static/activity/flipCode/sort-up.png'></Image>
             )}
             {!order && (
-            <Image className='right-tip' src='https://north-america-h5-test.oss-us-east-1.aliyuncs.com/static/activity/flipCode/sort-desc.png'></Image>
+            <Image className='right-tip' src='https://north-america-h5.oss-us-east-1.aliyuncs.com/static/activity/flipCode/sort-desc.png'></Image>
             )}
           </View>
         </View>

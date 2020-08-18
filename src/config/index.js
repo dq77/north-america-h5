@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'development') {
   // url = "http://usa.api.taozugong.com" // 美国生产环境
 
 } else if (process.env.NODE_ENV === 'production') {
-  url = `http://${process.env.CHANNEL}.api.taozugong.${process.env.BUILD === 'test' ? 'cn' : 'com'}`
+  url = `http://${process.env.CHANNEL}.${process.env.BUILD === 'test' ? 'api.taozugong.cn' : 'service.taozugong.com'}`
 }
 
 export const baseUrl = url

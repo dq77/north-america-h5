@@ -169,7 +169,7 @@ export default class Register extends Component {
       <View className='login'>
         <View className='at-row at-row__justify--around at-row__align--center'>
           <View className='at-col-6' onClick={this.goBack}>
-            <Image className='back-icon' src='https://north-america-h5-test.oss-us-east-1.aliyuncs.com/static/user/back.png' />
+            <Image className='back-icon' src='https://north-america-h5.oss-us-east-1.aliyuncs.com/static/user/back.png' />
           </View>
           <View className='at-col-6 head-word' onClick={this.toLogin}>账户登录</View>
         </View>
@@ -216,9 +216,9 @@ export default class Register extends Component {
               value={password}
             >
               {see &&
-                <Image className='right-icon' onClick={this.seePassword} src='https://north-america-h5-test.oss-us-east-1.aliyuncs.com/static/user/see.png' />}
+                <Image className='right-icon' onClick={this.seePassword} src='https://north-america-h5.oss-us-east-1.aliyuncs.com/static/user/see.png' />}
               {!see &&
-                <Image className='right-icon' onClick={this.seePassword} src='https://north-america-h5-test.oss-us-east-1.aliyuncs.com/static/user/unseen.png' />}
+                <Image className='right-icon' onClick={this.seePassword} src='https://north-america-h5.oss-us-east-1.aliyuncs.com/static/user/unseen.png' />}
             </AtInput>
           </View>
           {sumitFlag && <View className='submit' >
