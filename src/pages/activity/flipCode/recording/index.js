@@ -19,10 +19,10 @@ export default class Index extends Component {
   state = {
     couponList: [],
     tab: 3,
-    order: true,
     page: 1,
     totalPage: 1,
     totalRecords: 0,
+    asc: true,
     loading: true
   }
 
@@ -42,6 +42,7 @@ export default class Index extends Component {
       payload: {
         size: 10,
         page: this.state.page,
+        asc: this.state.asc,
         status: this.state.tab
       },
       callback: res => {
@@ -76,14 +77,18 @@ export default class Index extends Component {
   }
   changeOrder = () => {
     this.setState({
-      order: !this.state.order
+      asc: !this.state.asc,
+      page: 1,
+      loading: true
+    }, () => {
+      this.getList()
     })
   }
 
   componentDidHide () { }
 
   render () {
-    const { couponList, tab, order, totalRecords, page, totalPage, loading } = this.state
+    const { couponList, tab, asc, totalRecords, page, totalPage, loading } = this.state
     return (
       <View className='code-recording-page'>
         <View className='title-view'>
@@ -93,10 +98,10 @@ export default class Index extends Component {
         <View className='list-head'>
           <View>数量：{totalRecords}</View>
           <View onClick={() => {this.changeOrder()}}>时间
-            {order && (
+            {asc && (
             <Image className='right-tip' src='https://north-america-h5.oss-us-east-1.aliyuncs.com/static/activity/flipCode/sort-up.png'></Image>
             )}
-            {!order && (
+            {!asc && (
             <Image className='right-tip' src='https://north-america-h5.oss-us-east-1.aliyuncs.com/static/activity/flipCode/sort-desc.png'></Image>
             )}
           </View>
@@ -107,7 +112,7 @@ export default class Index extends Component {
               <View>{item.couponName}</View>
               <View className='btn-info'>
                 <View>{item.code.replace(/\s/g,'').replace(/(.{4})/g,"$1 ")}</View>
-                <View className='time'>{item.gmtCreate}</View>
+                <View className='time'>{tab === 3 ? item.gmtCreate : item.verifiedTime}</View>
               </View>
             </View>
           )})}
