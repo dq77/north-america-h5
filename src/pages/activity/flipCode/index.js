@@ -106,7 +106,7 @@ export default class Index extends Component {
       <View className='flip-code-page'>
         {!showCoupon && (
         <View className='title-view'>
-          <Image className='title-img' src='https://usa-east-static.oss-us-east-1.aliyuncs.com/canada/prod/frontend/activity/flipCode/title.png'></Image>
+          <Image className='title-img' src='https://north-america-h5-test.oss-us-east-1.aliyuncs.com/static/activity/flipCode/title.png'></Image>
           <View className='tab-tip' onClick={this.toRecording}> recording</View>
         </View>
         )}

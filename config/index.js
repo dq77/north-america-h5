@@ -17,6 +17,9 @@ const config = {
   plugins: [],
   defineConstants: {
   },
+  env: {
+    CHANNEL: 'CANADA'
+  },
   copy: {
     patterns: [
     ],
@@ -48,9 +51,12 @@ const config = {
     }
   },
   h5: {
-    publicPath: '/',
+    publicPath: '/canada',
     esnextModules: ['taro-ui'],
     staticDirectory: 'static',
+    router: {
+      mode: 'hash' // 或者是 'browser'
+    },
     postcss: {
       autoprefixer: {
         enable: true,

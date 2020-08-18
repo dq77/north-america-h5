@@ -146,7 +146,7 @@ export default class Newpwd extends Component {
       <View className='login'>
         <View className='at-row at-row__justify--around at-row__align--left'>
           <View className='at-col-6' onClick={this.goBack}>
-            <Image className='back-icon' src='https://usa-east-static.oss-us-east-1.aliyuncs.com/canada/prod/frontend/user/back.png' />
+            <Image className='back-icon' src='https://north-america-h5-test.oss-us-east-1.aliyuncs.com/static/user/back.png' />
           </View>
           <View className='at-col-6 head-word'></View>
         </View>
@@ -197,9 +197,9 @@ export default class Newpwd extends Component {
               value={password}
             >
               {see &&
-                <Image className='right-icon' onClick={this.seePassword} src='https://usa-east-static.oss-us-east-1.aliyuncs.com/canada/prod/frontend/user/see.png' />}
+                <Image className='right-icon' onClick={this.seePassword} src='https://north-america-h5-test.oss-us-east-1.aliyuncs.com/static/user/see.png' />}
               {!see &&
-                <Image className='right-icon' onClick={this.seePassword} src='https://usa-east-static.oss-us-east-1.aliyuncs.com/canada/prod/frontend/user/unseen.png' />}
+                <Image className='right-icon' onClick={this.seePassword} src='https://north-america-h5-test.oss-us-east-1.aliyuncs.com/static/user/unseen.png' />}
             </AtInput>
           </View>}
           {sumitFlag && <View className='submit' >
