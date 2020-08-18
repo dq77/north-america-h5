@@ -1,0 +1,30 @@
+/*
+ * @Author: 刁琪
+ * @Date: 2020-08-17 13:53:28
+ * @LastEditors: わからないよう
+ */
+import React, { Component } from 'react'
+import { View, Text } from '@tarojs/components'
+import { AtButton } from 'taro-ui'
+
+import './index.scss'
+
+export default class Index extends Component {
+
+  componentWillMount () { }
+
+  componentDidMount () { }
+
+  componentWillUnmount () { }
+
+  componentDidShow () { }
+
+  componentDidHide () { }
+
+  render () {
+    return (
+      <View className='index'>
+      </View>
+    )
+  }
+}
