@@ -20,3 +20,11 @@ export function hasUserState() {
     }
   });
 }
+
+// APP端Flutter推送Token至H5
+window.flutterCallJsSetToken = function (Token) {
+  var exp = new Date();
+  exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000);
+  document.cookie = "Token=" + escape(Token) + ";expires=" + exp.toGMTString() + ';path=' + '/';
+  return '设置成功'
+}

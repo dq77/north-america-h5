@@ -9,7 +9,7 @@ import { View, Image } from '@tarojs/components'
 import { connect } from 'react-redux'
 import { AtButton } from 'taro-ui'
 import QRCode from 'qrcode';
-import { setCookie } from '../../../utils/cookie'
+import { getCookie } from '../../../utils/cookie'
 import { hasUserState } from '../../../utils/login'
 
 import './index.scss'
@@ -40,14 +40,9 @@ export default class Index extends Component {
   componentWillUnmount () { }
 
   componentDidShow () {
-    const appInfo = localStorage.getItem('appInfo')
-    const token = localStorage.getItem('Token')
-    if (appInfo || token) {
-      setCookie('Token', appInfo || token)
+    if (getCookie('Token')) {
+      this.initPage()
     }
-    hasUserState().then(res => {
-      res && this.initPage()
-    })
   }
 
   initPage() {
@@ -66,21 +61,25 @@ export default class Index extends Component {
     })
   }
   getCoupon = () => {
-    this.props.dispatch({
-      type: 'activity/getCoupon',
-      payload: {
-        couponId: 1
-      },
-      callback: (res) => {
-        if (res.code === 200) {
-          QRCode.toDataURL(res.data, {margin: 1}).then(url => {
-            this.setState({
-              qrcodeUrl: url,
-              couponNum: res.data,
-              showCoupon: true
-            })
-          })
-        }
+    hasUserState().then(isLogin => {
+      if (isLogin) {
+        this.props.dispatch({
+          type: 'activity/getCoupon',
+          payload: {
+            couponId: 1
+          },
+          callback: (res) => {
+            if (res.code === 200) {
+              QRCode.toDataURL(res.data, {margin: 1}).then(url => {
+                this.setState({
+                  qrcodeUrl: url,
+                  couponNum: res.data.replace(/\s/g,'').replace(/(.{4})/g,"$1 "),
+                  showCoupon: true
+                })
+              })
+            }
+          }
+        })
       }
     })
   }
@@ -90,8 +89,12 @@ export default class Index extends Component {
     })
   }
   toRecording = () => {
-    Taro.navigateTo({
-      url: '/pages/activity/flipCode/recording/index'
+    hasUserState().then(isLogin => {
+      if (isLogin) {
+        Taro.navigateTo({
+          url: '/pages/activity/flipCode/recording/index'
+        })
+      }
     })
   }
 

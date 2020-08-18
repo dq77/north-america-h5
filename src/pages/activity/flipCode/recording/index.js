@@ -22,8 +22,8 @@ export default class Index extends Component {
     order: true,
     page: 1,
     totalPage: 1,
-    totalRecords: 0
-
+    totalRecords: 0,
+    loading: true
   }
 
   componentWillMount () { }
@@ -48,7 +48,8 @@ export default class Index extends Component {
         this.setState({
           couponList: this.state.couponList.concat(res.data.list),
           totalPage: res.data.totalPage,
-          totalRecords: res.data.totalRecords
+          totalRecords: res.data.totalRecords,
+          loading: false
         })
       }
     })
@@ -56,7 +57,8 @@ export default class Index extends Component {
   loadMore = () => {
     if (this.state.totalPage > this.state.page) {
       this.setState({
-        page: this.state.page - -1
+        page: this.state.page - -1,
+        loading: true
       }, () => {
         this.getList()
       })
@@ -66,7 +68,8 @@ export default class Index extends Component {
     this.setState({
       couponList: [],
       page: 1,
-      tab: tab
+      tab: tab,
+      loading: true
     }, () => {
       this.getList()
     })
@@ -80,7 +83,7 @@ export default class Index extends Component {
   componentDidHide () { }
 
   render () {
-    const { couponList, tab, order, totalRecords } = this.state
+    const { couponList, tab, order, totalRecords, page, totalPage, loading } = this.state
     return (
       <View className='code-recording-page'>
         <View className='title-view'>
@@ -103,11 +106,16 @@ export default class Index extends Component {
             <View key={item.code} className='item'>
               <View>{item.couponName}</View>
               <View className='btn-info'>
-                <View>{item.code}</View>
+                <View>{item.code.replace(/\s/g,'').replace(/(.{4})/g,"$1 ")}</View>
                 <View className='time'>{item.gmtCreate}</View>
               </View>
             </View>
           )})}
+          {(page<totalPage || loading) ? (
+            <View className='loading'>加载中......</View>
+          ) : (
+            <View className='loading'>&nbsp;</View>
+          )}
         </ScrollView>
       </View>
     )

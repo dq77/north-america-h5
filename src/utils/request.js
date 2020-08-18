@@ -28,14 +28,14 @@ export default (options = { method: 'GET', data: {}, requestType: false, content
       if (statusCode >= 200 && statusCode < 300) {
         if (data.code === -1) {
           Taro.showToast({
-            title: `${res.data.subMsg}` || res.data.code,
+            title: `${res.data.msg}` || res.data.code,
             icon: 'none',
             mask: true
           })
-        }
-        // -110 token 失效登陆授权页
-        if (data.code === -110) {
-          delCookie('Token')
+          // token失效登陆授权页
+          if (data.msg === 'token失效') {
+            delCookie('Token')
+          }
         }
         resolve(data)
       } else {
