@@ -22,7 +22,7 @@ export default class Index extends Component {
     page: 1,
     totalPage: 1,
     totalRecords: 0,
-    asc: true,
+    asc: false,
     loading: true
   }
 

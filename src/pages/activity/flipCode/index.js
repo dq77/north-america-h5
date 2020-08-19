@@ -33,7 +33,7 @@ export default class Index extends Component {
   componentDidMount () {
     this.props.dispatch({
       type: 'common/setChannel',
-      payload: 'CANADA'
+      payload: process.env.CHANNEL
     })
   }
 
@@ -41,6 +41,10 @@ export default class Index extends Component {
 
   componentDidShow () {
     if (getCookie('Token')) {
+      this.props.dispatch({
+        type: 'common/setIsLogin',
+        payload: true
+      })
       this.initPage()
     }
   }
@@ -70,7 +74,7 @@ export default class Index extends Component {
           },
           callback: (res) => {
             if (res.code === 200) {
-              QRCode.toDataURL(res.data, {margin: 1}).then(url => {
+              QRCode.toDataURL(res.data, {margin: 1, width: 200}).then(url => {
                 this.setState({
                   qrcodeUrl: url,
                   couponNum: res.data.replace(/\s/g,'').replace(/(.{4})/g,"$1 "),

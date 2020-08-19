@@ -4,7 +4,6 @@
  * @LastEditors: わからないよう
  */
 import Taro from '@tarojs/taro'
-import { baseUrl } from '../config'
 
 import { getCookie, delCookie } from './cookie'
 
@@ -13,6 +12,7 @@ export default (options = { method: 'GET', data: {}, requestType: false, content
   if (getCookie('Token')) {
     Token = getCookie('Token')
   }
+  const baseUrl = `http://${process.env.CHANNEL}.${process.env.BUILD === 'test' ? 'api.taozugong.cn' : 'service.taozugong.com'}`
   return new Promise((resolve, reject) => {
     Taro.request({
       url: baseUrl + options.url,

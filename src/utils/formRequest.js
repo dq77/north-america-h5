@@ -5,13 +5,13 @@
  */
 
 import Taro from '@tarojs/taro';
-import { baseUrl } from '../config';
 import { getCookie } from './cookie'
 
 let Token;
 if (getCookie('Token')) {
   Token = getCookie('Token');
 }
+const baseUrl = `http://${process.env.CHANNEL}.${process.env.BUILD === 'test' ? 'api.taozugong.cn' : 'service.taozugong.com'}`
 
 export default (options = { method: 'GET', data: {} }) => {
   return new Promise((resolve, reject) => {

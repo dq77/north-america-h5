@@ -12,7 +12,7 @@ const build = 'test' // 这是打测试环境的包
 const channel = 'canada' // 打加拿大
 // const channel = 'usa' // 打美国
 
-// 上面两项要在打包时选择好 下面不用改了
+// 上面两项要在打包时选择好 下面谨慎改动
 
 // eslint-disable-next-line import/no-commonjs
 module.exports = {

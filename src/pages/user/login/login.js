@@ -6,8 +6,8 @@ import { AtButton, AtInput } from 'taro-ui'
 import { setCookie } from '../../../utils/cookie';
 import './index.scss'
 
-@connect(({ user }) => ({
-  ...user,
+@connect(({ user, common }) => ({
+  ...user, ...common
 }))
 export default class Login extends Component {
   state = {
@@ -153,10 +153,14 @@ export default class Login extends Component {
             icon: 'none',
             duration: 1000,
           })
+          setCookie('Token', data.data)
+          this.props.dispatch({
+            type: 'common/setIsLogin',
+            payload: true
+          })
           setTimeout(function () {
             _this.goBack()
           }, 1000)
-          setCookie('Token', data.data)
         } else {
           
         }

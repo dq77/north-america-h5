@@ -7,7 +7,8 @@
 export default {
   namespace: 'common',
   state: {
-    channel: ''
+    channel: '',// 美国 or 加拿大
+    isLogin: false
   },
 
   effects: {
@@ -16,6 +17,14 @@ export default {
         type: 'save',
         payload: {
           channel: payload
+        }
+      })
+    },
+    *setIsLogin({ payload }, { put }) {
+      yield put({
+        type: 'save',
+        payload: {
+          isLogin: payload
         }
       })
     },
