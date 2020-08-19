@@ -27,7 +27,7 @@ export const getCoupon = (data) => Request({
 
 // 查询我发放的券码
 export const getMyCouponList = (data) => Request({
-  url: `/v1/users/coupons/TAO_ZU_GONG/code_records`,
-  method: 'POST',
+  url: `/v1/users/coupons/TAO_ZU_GONG/code_records/${data.page}-${data.size}`,
+  method: 'GET',
   data
 });
