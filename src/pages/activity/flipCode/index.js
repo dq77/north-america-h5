@@ -54,8 +54,7 @@ export default class Index extends Component {
       type: 'activity/myCouponList',
       payload: {
         size: 10,
-        page: 1,
-        status: 3
+        page: 1
       },
       callback: res => {
         this.setState({
