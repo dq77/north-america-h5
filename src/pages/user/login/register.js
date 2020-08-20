@@ -2,6 +2,7 @@ import Taro, { getCurrentInstance } from '@tarojs/taro'
 import React, { Component } from 'react'
 import { View, Image, Text } from '@tarojs/components'
 import { connect } from 'react-redux'
+import md5 from 'md5'
 import { AtButton, AtCheckbox, AtInput } from 'taro-ui'
 import './index.scss'
 import { setCookie } from '../../../utils/cookie'
@@ -124,7 +125,7 @@ export default class Register extends Component {
   register = () => {
     let params = {
       phoneOrEmail: this.state.phone,
-      password: this.state.password,
+      password: md5(this.state.password),
       captcha:this.state.code,
       accountType: 'EMAIL',
       channel:'TAO_ZU_GONG'

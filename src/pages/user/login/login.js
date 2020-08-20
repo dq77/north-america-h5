@@ -2,6 +2,7 @@ import Taro, { getCurrentInstance } from '@tarojs/taro'
 import React, { Component } from 'react'
 import { View, Image, Text } from '@tarojs/components'
 import { connect } from 'react-redux'
+import md5 from 'md5'
 import { AtButton, AtInput } from 'taro-ui'
 import { setCookie } from '../../../utils/cookie';
 import './index.scss'
@@ -137,7 +138,7 @@ export default class Login extends Component {
       accountType: 'EMAIL'
     }
     if ( this.state.loginType == 1 ) {
-      params.password = this.state.password
+      params.password = md5(this.state.password)
       url = 'user/login'
     } else {
       params.verification = this.state.code

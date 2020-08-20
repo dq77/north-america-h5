@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
 import React, { Component } from 'react'
+import md5 from 'md5'
 import { View, Image, Text } from '@tarojs/components'
 import { connect } from 'react-redux'
 import { AtButton, AtInput } from 'taro-ui'
@@ -116,7 +117,7 @@ export default class Newpwd extends Component {
       type: 'user/findPassword',
       payload: {
         phoneOrEmail: this.state.phone,
-        password: this.state.password,
+        password: md5(this.state.password),
         accountType: 'EMAIL',
         captcha: this.state.code
       },
