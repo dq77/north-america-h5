@@ -63,10 +63,16 @@
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    .top-area{
+      padding: 40px 0 10px;
+      .top-img{
+        width: 330px;
+        height: 285px;
+      }
+    }
     .coupon{
-      margin-top: 160px;
       width: 463px;
       height: 820px;
       background: url('https://north-america-h5.oss-us-east-1.aliyuncs.com/static/activity/flipCode/coupon.png');
@@ -83,6 +89,12 @@
         text-align: center;
         font-size: 40px;
       }
+    }
+    .btm-area{
+      color: #FFF;
+      font-size: 38px;
+      letter-spacing: 4px;
+      margin-top: 40px;
     }
   }
 }
