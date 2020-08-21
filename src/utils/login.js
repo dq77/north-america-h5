@@ -5,7 +5,7 @@
  */
 /* eslint-disable no-undef */
 import Taro from '@tarojs/taro'
-import { getCookie, setCookie, delCookie } from './cookie'
+import { getCookie } from './cookie'
 
 export function hasUserState() {
   // 邮箱登录
@@ -26,18 +26,4 @@ export function hasUserState() {
       resolve(false);
     }
   });
-}
-
-// APP端Flutter推送Token至H5
-window.flutterCallJsSetToken = function (Token) {
-  // if (navigator.userAgent.includes('TZGCanadaApp')) {
-  //   // 加拿大APP内嵌页面单独操作区
-  //   console.log('This is Canada');
-  // } else if (navigator.userAgent.includes('TZGUsaApp')) {
-  //   // 美国APP内嵌页面单独操作区
-  //   console.log('This is America');
-  // }
-  delCookie('Token')
-  setCookie('Token', Token)
-  return 'programme Set Token Complete'
 }
