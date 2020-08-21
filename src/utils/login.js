@@ -14,15 +14,15 @@ export function hasUserState() {
     if (token) {
       resolve(true);
     } else {
-      // if (navigator.userAgent.includes('TZGCanadaApp')) {
+      if (navigator.userAgent.includes('TZGCanadaApp')) {
         // 加拿大APP内嵌页面 调原生登录
-        // ToFlutterIsNotLogin.postMessage('NotLogin')
-      // } else {
+        ToFlutterIsNotLogin.postMessage('NotLogin')
+      } else {
         // H5
         Taro.navigateTo({
           url: `/pages/user/login/login`,
         });
-      // }
+      }
       resolve(false);
     }
   });
