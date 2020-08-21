@@ -145,7 +145,7 @@ export default class Index extends Component {
             <Image className='top-img' src='https://north-america-h5.oss-us-east-1.aliyuncs.com/static/activity/flipCode/code-top.png'></Image>
           </View>
           <View className='coupon'>
-            <Image className='coupon-img' src={qrcodeUrl}></Image>
+            <Image className='coupon-img' onClick={this.closeCoupon} src={qrcodeUrl}></Image>
             <View className='coupon-num' onClick={this.closeCoupon}>
               {couponNum}
             </View>
