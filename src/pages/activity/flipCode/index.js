@@ -14,8 +14,8 @@ import { hasUserState } from '../../../utils/login'
 
 import './index.scss'
 
-@connect(({ activity, common }) => ({
-  ...activity, ...common
+@connect(({ activity, common, user }) => ({
+  ...activity, ...common, ...user
 }))
 export default class Index extends Component {
   constructor(props) {
@@ -25,7 +25,9 @@ export default class Index extends Component {
     allCoupon: 0,
     qrcodeUrl: '',
     couponNum: '',
-    showCoupon: false
+    showCoupon: false,
+    loading: false,
+    nickName: ''
   }
 
   componentWillMount () { }
@@ -66,21 +68,36 @@ export default class Index extends Component {
   getCoupon = () => {
     hasUserState().then(isLogin => {
       if (isLogin) {
+        this.setState({ loading: true })
         this.props.dispatch({
-          type: 'activity/getCoupon',
-          payload: {
-            couponId: 1
-          },
-          callback: (res) => {
-            if (res.code === 200) {
-              QRCode.toDataURL(res.data, {margin: 1, width: 200}).then(url => {
-                this.setState({
-                  qrcodeUrl: url,
-                  couponNum: res.data.replace(/\s/g,'').replace(/(.{4})/g,"$1 "),
-                  showCoupon: true
-                })
+          type: 'user/getUserInfo',
+          payload: {},
+          callback: (info) => {
+            if (info.code !== 200) {
+              this.setState({
+                loading: false
               })
+              return false
             }
+            this.props.dispatch({
+              type: 'activity/getCoupon',
+              payload: { couponId: 1 },
+              callback: (res) => {
+                if (res.code === 200) {
+                  QRCode.toDataURL(res.data, {margin: 1, width: 200}).then(url => {
+                    this.setState({
+                      qrcodeUrl: url,
+                      couponNum: res.data.replace(/\s/g,'').replace(/(.{4})/g,"$1 "),
+                      showCoupon: true,
+                      nickName: info.data.nickName
+                    })
+                  })
+                }
+                this.setState({
+                  loading: false
+                })
+              }
+            })
           }
         })
       }
@@ -104,7 +121,7 @@ export default class Index extends Component {
   componentDidHide () { }
 
   render () {
-    const { showCoupon, qrcodeUrl, couponNum, allCoupon } = this.state
+    const { showCoupon, qrcodeUrl, couponNum, allCoupon, loading, nickName } = this.state
     return (
       <View className='flip-code-page'>
         {!showCoupon && (
@@ -117,7 +134,7 @@ export default class Index extends Component {
         <View className='card-area'>
           <View className='card-title'>Issue coupons</View>
           <View>
-            <AtButton className='issue-btn' onClick={this.getCoupon}>Issue</AtButton>
+            <AtButton disabled={loading} className='issue-btn' onClick={this.getCoupon}>Issue</AtButton>
           </View>
           <View className='card-subtitle'>You have issued {allCoupon} sheets</View>
         </View>
@@ -132,6 +149,7 @@ export default class Index extends Component {
             <View className='coupon-num' onClick={this.closeCoupon}>
               {couponNum}
             </View>
+            <View className='nick-name'>{nickName}</View>
           </View>
           <View className='btm-area'>
             住房神助攻 就找淘租公

@@ -89,6 +89,18 @@
         text-align: center;
         font-size: 40px;
       }
+      .nick-name{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 36px;
+        color: #FFF;
+        height: 180px;
+      }
     }
     .btm-area{
       color: #FFF;

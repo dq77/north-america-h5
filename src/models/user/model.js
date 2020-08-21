@@ -1,3 +1,8 @@
+/*
+ * @Author: 刁琪
+ * @Date: 2020-08-17 13:56:07
+ * @LastEditors: わからないよう
+ */
 import * as userApi from './service'
 
 export default {
@@ -25,7 +30,7 @@ export default {
       const response = yield call(userApi.codeLogin, payload)
       callback && callback(response)
     },
-    *fetchUserInfo({ payload, callback }, { call, put }) {
+    *getUserInfo({ payload, callback }, { call, put }) {
       const response = yield call(userApi.getUserInfo, payload)
       callback && callback(response)
       if (response.code == 200) {
@@ -36,54 +41,10 @@ export default {
         })
       }
     },
-    *infoEdit({ payload, callback }, { call, put }) {
-      const response = yield call(userApi.infoEdit, payload)
-      callback && callback(response)
-    },
-    *editPassword({ payload, callback }, { call, put }) {
-      const response = yield call(userApi.editPassword, payload)
-      callback && callback(response)
-    },
     *findPassword({ payload, callback }, { call, put }) {
       const response = yield call(userApi.findPassword, payload)
       callback && callback(response)
     },
-    *getMyCoupon({ payload, callback }, { call, put }) {
-      const response = yield call(userApi.getMyCoupon, payload)
-      callback()
-      if (response.code == 200) {
-        yield put({
-          type: 'getCoupon',
-          payload: response.data || []
-        })
-      }
-    },
-
-    // 订单徽标
-    *getorederunpaid({ payload, callback }, { call, put }) {
-      const { code, data } = yield call(userApi.getorederunpaid, { ...payload })
-      callback && callback()
-      if (code === 200) {
-        yield put({
-          type: 'save',
-          payload: {
-            cornerMark: data
-          }
-        })
-      }
-    },
-
-    // 上传意见
-    *upAddidea({ payload, callback }, { call }) {
-      const res = yield call(userApi.upAddidea, { ...payload })
-      callback && callback(res)
-    },
-
-    // 意见图片上传
-    *uploadImg({ payload, callback }, { call }) {
-      const res = yield call(userApi.uploadImg, payload)
-      callback && callback(res)
-    }
   },
 
   reducers: {
