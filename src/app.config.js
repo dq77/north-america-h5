@@ -11,6 +11,7 @@ export default {
     'pages/user/login/newpwd',
     'pages/user/login/register',
     'pages/activity/flipCode/index',
+    'pages/activity/flipCode/qrpage/index',
     'pages/activity/flipCode/recording/index',
   ],
   window: {
