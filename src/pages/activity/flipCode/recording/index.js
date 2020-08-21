@@ -94,7 +94,7 @@ export default class Index extends Component {
       <View className='code-recording-page'>
         <View className='title-view'>
           <View onClick={() => {this.changeTab(3)}} className={`title-item ${tab === 3}`}>Already issued</View>
-          <View onClick={() => {this.changeTab(4)}} className={`title-item ${tab === 4}`}>already used</View>
+          <View onClick={() => {this.changeTab(4)}} className={`title-item ${tab === 4}`}>Already used</View>
         </View>
         <View className='list-head'>
           <View>数量：{totalRecords}</View>
