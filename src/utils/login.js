@@ -5,7 +5,7 @@
  */
 /* eslint-disable no-undef */
 import Taro from '@tarojs/taro'
-import { getCookie, setCookie } from './cookie'
+import { getCookie, setCookie, delCookie } from './cookie'
 
 export function hasUserState() {
   // 邮箱登录
@@ -37,6 +37,7 @@ window.flutterCallJsSetToken = function (Token) {
   //   // 美国APP内嵌页面单独操作区
   //   console.log('This is America');
   // }
+  delCookie('Token')
   setCookie('Token', Token)
   return 'programme Set Token Complete'
 }
